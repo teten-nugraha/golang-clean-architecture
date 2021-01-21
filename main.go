@@ -1,7 +1,12 @@
 package main
 
-import "fmt"
+import (
+	routes2 "github.com/teten-nugraha/golang-crud/routes"
+)
 
 func main() {
-	fmt.Println("Hai teten")
+
+	routes := routes2.Init()
+
+	routes.Logger.Fatal(routes.Start(":9999"))
 }
