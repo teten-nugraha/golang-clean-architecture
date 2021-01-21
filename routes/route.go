@@ -24,10 +24,8 @@ func Init() *echo.Echo {
 		Level: 5,
 	}))
 
-	//MahasiswaRoute(routes, mahasiswaAPI)
+	MahasiswaRoute(routes, mahasiswaAPI)
 
-	routes.GET("/mahasiswalist", mahasiswaAPI.FindAll)
-	routes.POST("/mahasiswa", mahasiswaAPI.SaveOrUpdate)
 
 	return routes
 }

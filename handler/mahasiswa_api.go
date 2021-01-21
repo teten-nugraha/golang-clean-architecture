@@ -2,10 +2,10 @@ package handler
 
 import (
 	"github.com/labstack/echo"
+	_ "github.com/labstack/echo"
 	"github.com/teten-nugraha/golang-crud/dto"
 	_ "github.com/teten-nugraha/golang-crud/dto"
 	"github.com/teten-nugraha/golang-crud/service"
-	_ "github.com/labstack/echo"
 	"net/http"
 )
 
@@ -44,4 +44,23 @@ func (m *MahasiswaAPI) SaveOrUpdate(e echo.Context) error {
 	}
 
 	return SuccessResponse(e, http.StatusOK, res)
+}
+
+func (m *MahasiswaAPI) FindByNIM(e echo.Context) error {
+	nim := e.Param("nim")
+
+	mahasiswa := m.MahasiswaService.FindByNim(nim)
+
+	return SuccessResponse(e, http.StatusOK, mahasiswa)
+}
+
+func (m *MahasiswaAPI) DeleteMahasiswa(e echo.Context) error {
+	id := e.Param("id")
+
+	err := m.MahasiswaService.DeleteMahasiswa(id)
+	if err != nil {
+		return ErrorResponse(e, http.StatusInternalServerError, err.Error())
+	}
+
+	return SuccessResponse(e, http.StatusOK, "Delete Success")
 }

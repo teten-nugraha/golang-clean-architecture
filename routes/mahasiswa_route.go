@@ -9,7 +9,8 @@ func MahasiswaRoute(routes *echo.Echo, api handler.MahasiswaAPI) {
 
 	mhs := routes.Group("/mahasiswa")
 	{
-		mhs.GET("/", api.FindAll)
-		mhs.POST("/", api.SaveOrUpdate)
+		mhs.GET("/list", api.FindAll)
+		mhs.POST("/save", api.SaveOrUpdate)
+		mhs.GET("/findByNIM/:nim", api.FindByNIM)
 	}
 }
